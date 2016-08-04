@@ -3,9 +3,16 @@
 /* Function will check if there is detector data file in correct place and if containd correct data. */
 function getDetector($fileName, $detectorName) {
 
+  $safeFileAge = '-6 min';
+
   $file = @fopen($fileName, 'r');
   if (!$file) {
     echo "Can not find file $fileName.";
+    exit(3);
+  }
+
+  if (filemtime($fileName) < strtotime(date('Y-m-d H:i:s', strtotime($safeFileAge)))) {
+    echo "Latest update is older than $safeFileAge.";
     exit(3);
   }
 
