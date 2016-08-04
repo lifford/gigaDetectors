@@ -9,15 +9,15 @@
 
 include 'pluginsLib.php';
 
-$tempServerAddress = "10.13.13.101";
+$tempFileName = "detectorsData.txt";
 
 $tempDetectorName=$argv[1];
 $warningTemp=$argv[2];
 $criticalTemp=$argv[3];
 
 /* function from external file
-   will check if there is connection to server and check if if returns valid object */
-$detector = getDetector($tempServerAddress, $tempDetectorName);
+   will check if there is file and check if it contains valid object */
+$detector = getDetector($tempFileName, $tempDetectorName);
 
 /* Converting value to C degree */
 $currentValue = $detector['currValue'] / 10;

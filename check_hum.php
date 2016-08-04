@@ -9,15 +9,15 @@
 
 include 'pluginsLib.php';
 
-$humServerAddress = "10.13.13.101";
+$humFileName = "detectorsData.txt";
 
 $humDetectorName=$argv[1];
 $warningHum=$argv[2];
 $criticalHum=$argv[3];
 
 /* function from external file
-   will check if there is connection to server and check if if returns valid object */
-$detector = getDetector($humServerAddress, $humDetectorName);
+   will check if there is file and check if it contains valid object */
+$detector = getDetector($humFileName, $humDetectorName);
 
 /* Converting value to C degree */
 $currentValue = $detector['currValue'] / 10;
