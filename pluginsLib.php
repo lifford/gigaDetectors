@@ -24,7 +24,7 @@ function getDetector($fileName, $detectorName) {
   $jsonObject = json_decode($json, true);
 
   if (!isset($jsonObject['analogInputs'])) {
-    echo "Can not get valid json object. It can be wrong address set or service is disabled.";
+    echo "Can not get valid json object.";
     exit(3);
   }
 
@@ -33,6 +33,17 @@ function getDetector($fileName, $detectorName) {
     exit(3);
   }
 
-  return $jsonObject['analogInputs'][$detectorName];
+  $detector = $jsonObject['analogInputs'][$detectorName];
+
+  if (!isset($detector['limitLoLo']) ||
+      !isset($detector['limitLo']) ||
+      !isset($detector['currValue']) ||
+      !isset($detector['limitHi']) ||
+      !isset($detector['limitHiHi']) ) {
+    echo "Can not find required data for detector $detectorName.";
+    exit(3);
+  }
+
+  return $detector;
 
 }
