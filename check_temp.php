@@ -2,8 +2,8 @@
 <?php
 /* This script require php5 installed in Your system.
 
-0 <------> warningTemp <-----------> criticalTemp <------------ | Value
-     OK         |         WARNING          |         CRITICAL   | State
+0 <------------> limitLoLo <-----------> limitLo <------> limitHi <-----------> limitHiHi <------------- | Value
+     CRITICAL        |        WARNING       |       OK       |       WARNING        |        CRITICAL    | State
 
 */
 
@@ -11,15 +11,16 @@ include 'pluginsLib.php';
 
 $tempFileName = "detectorsData.txt";
 
-$tempDetectorName=$argv[1];
+$tempDetectorName = $argv[1];
 
 /* function from external file
    will check if there is file and check if it contains valid object */
 $detector = getDetector($tempFileName, $tempDetectorName);
 
 /* Converting value to C degree */
-$currentValue = $detector['currValue'];
 $userFriendlyValue = $detector['currValue'] / 10;
+
+$currentValue = $detector['currValue'];
 $userFriendlyName = $detector['name'];
 
 if ($currentValue < 0) {

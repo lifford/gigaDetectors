@@ -1,9 +1,9 @@
 #!usr/bin/php
 <?php
-/* This script require php5 and php5-curl installed in Your system.
+/* This script require php5 installed in Your system.
 
-0 <------> warningHum <-----------> criticalHum <------------ | Value
-     OK         |        WARNING          |        CRITICAL   | State
+0 <------------> limitLoLo <-----------> limitLo <------> limitHi <-----------> limitHiHi <------------- | Value
+     CRITICAL        |        WARNING       |       OK       |       WARNING        |        CRITICAL    | State
 
 */
 
@@ -11,7 +11,7 @@ include 'pluginsLib.php';
 
 $humFileName = "detectorsData.txt";
 
-$humDetectorName=$argv[1];
+$humDetectorName = $argv[1];
 
 /* function from external file
    will check if there is file and check if it contains valid object */
